@@ -109,25 +109,6 @@ CozyCorner/
 * 💬 Interactive User Experience
 * 📱 Mobile Friendly
 
----
-
-## 📸 Screenshots
-
-> Add screenshots of your project here.
-
-```
-screenshots/
-│
-├── home.png
-├── login.png
-├── register.png
-├── blogs.png
-├── anonymous-letter.png
-├── profile.png
-├── feedback.png
-```
-
----
 
 ## 🚀 Installation
 
