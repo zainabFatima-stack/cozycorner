@@ -1,0 +1,547 @@
+/* =====================================================
+   CozyCorner — main stylesheet
+   All page-specific inline <style> blocks from the old
+   version live here now, in one organized place, using
+   the same blush/cream cozy palette as before.
+   ===================================================== */
+
+:root {
+    --cozy-blush: #d9a5a5;
+    --cozy-blush-dark: #bf8b8b;
+    --cozy-blush-deep: #b9a5a5e6; /* navbar tone */
+    --cozy-mauve-deep: #7a4e4e;
+    --cozy-mauve: #9b5c5c;
+    --cozy-rose: #b06d6d;
+    --cozy-pink-light: #ffe9e0;
+    --cozy-cream: #fff8f0;
+    --cozy-peach: #fde2d1;
+    --cozy-text: #5c4b4b;
+    --cozy-footer: #2a2222;
+    --cozy-shadow: 0 10px 30px rgba(185, 148, 148, 0.45);
+    --cozy-radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: var(--cozy-text);
+    background: linear-gradient(135deg, var(--cozy-cream), var(--cozy-peach));
+}
+
+main, .page-wrap {
+    flex: 1 0 auto;
+}
+
+a { color: inherit; }
+
+/* Visible keyboard focus everywhere (accessibility) */
+a:focus-visible, button:focus-visible, input:focus-visible,
+textarea:focus-visible, .btn:focus-visible {
+    outline: 3px solid var(--cozy-mauve);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* =====================================================
+   Navbar
+   ===================================================== */
+.cozy-navbar {
+    background: var(--cozy-blush-deep);
+    backdrop-filter: blur(6px);
+    padding: 0.7rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.cozy-navbar .navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #3f2a2a;
+}
+
+.cozy-navbar .navbar-brand span { color: #fff; }
+
+.cozy-navbar .nav-link {
+    color: #3a2a2a;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.cozy-navbar .nav-link:hover,
+.cozy-navbar .nav-link.active {
+    background: rgba(255,255,255,0.55);
+    color: #2a1d1d;
+}
+
+.btn-nav-fill {
+    background: #fff;
+    color: var(--cozy-mauve-deep) !important;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.btn-nav-outline {
+    border: 1.5px solid rgba(255,255,255,0.7);
+    margin-left: 4px;
+}
+
+/* =====================================================
+   Flash messages
+   ===================================================== */
+.flash-wrap { margin-top: 1.2rem; }
+
+/* =====================================================
+   Footer
+   ===================================================== */
+.cozy-footer {
+    background: var(--cozy-footer);
+    color: #f3e9e9;
+    text-align: center;
+    padding: 22px 15px;
+    margin-top: auto;
+}
+
+.cozy-footer .footer-sub {
+    font-size: 0.85rem;
+    color: #c9b6b6;
+}
+
+/* =====================================================
+   Hero / full-bleed background pages
+   (Home, About, Baking, Letter, Auth, Forms)
+   Each uses the SAME background photos as the original site.
+   ===================================================== */
+.hero-page {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 60px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 248, 240, 0.18);
+}
+
+.page-home   { background-image: url('https://i.pinimg.com/1200x/b0/3c/34/b03c3425d6f268a02a7460ccd3ece0b4.jpg'); }
+.page-about  { background-image: url('https://i.pinimg.com/736x/84/dc/de/84dcde99553b85e246ee2c71f49c39fc.jpg'); }
+.page-baking-hero { background-image: url('https://i.pinimg.com/736x/af/55/08/af550839e3cf842ae4d13e12769a36cf.jpg'); }
+.page-letter { background-image: url('https://i.pinimg.com/736x/b7/9e/fa/b79efa6d6ac9851ade6ee5bf93fd9547.jpg'); }
+.page-auth   { background-image: url('https://i.pinimg.com/736x/26/c1/62/26c1626eb65e9c6f741e61e44d60bdb8.jpg'); }
+.page-form   { background-image: url('https://i.pinimg.com/1200x/01/da/7e/01da7ec1603786888df853a4ea370040.jpg'); }
+
+.hero-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 720px;
+    background: rgba(185, 148, 148, 0.92);
+    color: #fff;
+    padding: 40px;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: var(--cozy-shadow);
+    animation: popIn 0.5s ease both;
+}
+
+.hero-card h1 { font-weight: 700; margin-bottom: 14px; }
+.hero-card p { line-height: 1.8; margin-bottom: 0; }
+
+/* the little "folded corner" signature touch — a nod to the
+   site's name, used sparingly on hero cards & dashboard tiles */
+.hero-card::after,
+.cozy-fold::after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 34px 34px 0;
+    border-color: transparent rgba(255,255,255,0.55) transparent transparent;
+    border-radius: 0 28px 0 0;
+}
+
+/* =====================================================
+   Generic content card (used on plain-background pages)
+   ===================================================== */
+.cozy-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: var(--cozy-radius);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    padding: 30px;
+}
+
+/* =====================================================
+   Auth pages (Login / Signup)
+   ===================================================== */
+.auth-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 380px;
+    background: rgba(185, 148, 148, 0.92);
+    padding: 36px 30px;
+    border-radius: 22px;
+    text-align: center;
+    color: #fff;
+    box-shadow: var(--cozy-shadow);
+    animation: popIn 0.5s ease both;
+}
+
+.auth-card h2 { margin-bottom: 18px; font-weight: 600; }
+
+.auth-card .form-control {
+    margin-bottom: 14px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 14px;
+}
+
+.auth-card .btn-cozy { width: 100%; }
+
+.auth-card a { color: #fff5f0; text-decoration: underline; }
+
+.password-wrap { position: relative; }
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #4a3636;
+    user-select: none;
+}
+
+/* =====================================================
+   Buttons
+   ===================================================== */
+.btn-cozy {
+    background: var(--cozy-blush);
+    color: #fff;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.btn-cozy:hover {
+    background: var(--cozy-blush-dark);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-cozy-outline {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 9px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.btn-cozy-outline:hover { background: rgba(255,255,255,0.2); color: #fff; }
+
+/* =====================================================
+   Dashboard tiles (CozyPicks)
+   ===================================================== */
+.dash-tile {
+    position: relative;
+    background: #fff;
+    border-radius: var(--cozy-radius);
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    transition: 0.3s;
+    height: 100%;
+    text-decoration: none;
+    display: block;
+    color: var(--cozy-text);
+}
+
+.dash-tile:hover {
+    transform: translateY(-8px);
+    background: var(--cozy-pink-light);
+    color: var(--cozy-text);
+}
+
+.dash-tile h2 { font-size: 1.15rem; color: var(--cozy-rose); margin-bottom: 8px; }
+.dash-tile p { font-size: 0.92rem; margin: 0; }
+
+/* =====================================================
+   Baking page
+   ===================================================== */
+.bake-card {
+    background: var(--cozy-blush-deep);
+    color: #2a1d1d;
+    padding: 22px;
+    border-radius: var(--cozy-radius);
+    box-shadow: 0 8px 22px rgba(185,148,148,0.55);
+    transition: 0.3s;
+    height: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.bake-card:hover { transform: translateY(-6px); }
+.bake-card h3 { margin-bottom: 8px; }
+
+.bake-card:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+.bake-card.selected {
+    border-color: #fff;
+    box-shadow: 0 10px 26px rgba(122, 78, 78, 0.7);
+}
+
+.bake-card-hint {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #4a2f2f;
+    margin-top: 4px;
+}
+
+/* =====================================================
+   Recipe detail panel (shown on the Baking page when a
+   card is clicked)
+   ===================================================== */
+.recipe-detail {
+    min-height: 60px;
+    transition: 0.3s;
+}
+
+.recipe-placeholder {
+    opacity: 0.85;
+    font-style: italic;
+}
+
+.recipe-detail-card {
+    position: relative;
+    background: rgba(255, 248, 240, 0.97);
+    color: var(--cozy-text);
+    border-radius: var(--cozy-radius);
+    padding: 32px;
+    box-shadow: var(--cozy-shadow);
+    animation: popIn 0.35s ease both;
+}
+
+.recipe-detail-card h2 {
+    color: var(--cozy-mauve-deep);
+    margin-bottom: 4px;
+}
+
+.recipe-detail-card .recipe-meta {
+    color: var(--cozy-rose);
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.recipe-columns {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.recipe-columns > div { flex: 1 1 220px; }
+
+.recipe-columns h3 {
+    font-size: 1rem;
+    color: var(--cozy-mauve);
+    margin-bottom: 10px;
+}
+
+.recipe-columns ul, .recipe-columns ol {
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+.recipe-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--cozy-blush);
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.recipe-close:hover { background: var(--cozy-blush-dark); }
+
+@media (max-width: 576px) {
+    .recipe-detail-card { padding: 24px 20px; }
+}
+
+/* =====================================================
+   Blog
+   ===================================================== */
+.blog-intro {
+    text-align: center;
+    padding: 130px 20px 30px;
+    background: linear-gradient(135deg, var(--cozy-cream), var(--cozy-peach));
+}
+
+.blog-intro p {
+    max-width: 700px;
+    margin: 10px auto 0;
+    line-height: 1.8;
+}
+
+.blog-box {
+    background: rgba(255,255,255,0.95);
+    padding: 36px 24px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    height: 100%;
+}
+
+.blog-box:hover { transform: translateY(-8px); background: #fff0e7; }
+.blog-box h2 { color: var(--cozy-rose); margin-bottom: 10px; }
+
+.blog-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.blog-card img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+}
+
+.blog-card .blog-card-body { padding: 24px; }
+.blog-card h2 a { color: var(--cozy-mauve-deep); text-decoration: none; }
+.blog-card h2 a:hover { text-decoration: underline; }
+.blog-card .author { font-size: 0.82rem; color: #8a7a7a; }
+
+.comment {
+    background: #f7f1ee;
+    padding: 10px 14px;
+    margin-top: 8px;
+    border-radius: 10px;
+}
+
+.comment b { color: var(--cozy-mauve-deep); }
+
+/* =====================================================
+   Letters
+   ===================================================== */
+.letter-card {
+    background: rgba(255, 248, 240, 0.95);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    transition: 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.6);
+    height: 100%;
+}
+
+.letter-card:hover { transform: translateY(-8px); box-shadow: 0 14px 26px rgba(0,0,0,0.16); }
+.letter-card h3 { color: var(--cozy-rose); margin-bottom: 6px; }
+
+.reply-box {
+    background: rgba(245, 219, 219, 0.7);
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 14px;
+    border-left: 4px solid var(--cozy-blush);
+}
+
+.reply-box h4 { color: var(--cozy-mauve); margin-bottom: 6px; font-size: 0.95rem; }
+
+/* =====================================================
+   Feedback
+   ===================================================== */
+.fb-card {
+    background: #f3d9d9;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.fb-card .fb-name { font-weight: 600; color: var(--cozy-mauve-deep); }
+.fb-card .fb-date { font-size: 0.78rem; color: #8a6f6f; }
+
+/* =====================================================
+   Forms (shared look for textareas/inputs outside Bootstrap defaults)
+   ===================================================== */
+textarea.form-control { resize: vertical; min-height: 120px; }
+
+/* =====================================================
+   Profile
+   ===================================================== */
+.profile-card {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.avatar-circle {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 18px;
+    background: var(--cozy-blush);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: #fff;
+}
+
+/* =====================================================
+   Small entrance animation used on cards/tiles
+   ===================================================== */
+@keyframes popIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pop { animation: popIn 0.45s ease both; }
+
+/* =====================================================
+   Responsive tweaks
+   ===================================================== */
+@media (max-width: 768px) {
+    .hero-page { padding: 110px 16px 50px; background-attachment: scroll; }
+    .hero-card, .auth-card { padding: 26px 20px; }
+    .blog-intro { padding: 110px 16px 24px; }
+}
